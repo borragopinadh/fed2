@@ -1,0 +1,31 @@
+<html>
+<body>
+<script>
+const products=[
+{name:"product 1",price:20,category:"Electronics"},
+{name:"product 2",price:30,category:"clothes"},
+{name:"product 3",price:40,category:"Electronics"},
+{name:"product 4",price:50,category:"clothes"},
+{name:"product 5",price:60,category:"clothes"},
+{name:"product 6",price:70,category:"Electronics"},
+{name:"product 7",price:80,category:"clothes"},
+{name:"product 8",price:90,category:"Electronics"},
+];
+
+const productsByCategory=products.reduce((acc,product)=> {
+    const category=product.category;
+    if(!acc[category]){
+          acc[category]=[]; }
+    acc[category].push(product);
+    return acc;
+},{});
+const avgPriceByCategory=Object.keys(productsByCategory).map(category=>{
+         const sum=productsByCategory[category].reduce((acc,product)=>acc+product.price,0);
+         return{category:category,average:sum/productsByCategory[category].length};
+       });
+const highPricedCategories=avgPriceByCategory.filter(category=>category.average>50);
+console.log(highPricedCategories);
+console.log("hi");
+</script>
+</body>
+</html>
